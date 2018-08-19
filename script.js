@@ -33,11 +33,20 @@ stats.begin();
 
 // Create a Cube Mesh with basic material
 var geometry = new THREE.BoxGeometry( 1, 1, 1 );
-var material = new THREE.MeshBasicMaterial( { color: "#433F81" } );
+var material = new THREE.MeshLambertMaterial( { color: "#433F81" } );
 var cube = new THREE.Mesh( geometry, material );
 
 // Add cube to Scene
 scene.add( cube );
+
+// Add some ambient light
+var light = new THREE.AmbientLight( 0x404040 , 1.0); // soft white light
+scene.add( light );
+
+// Add some point light
+var light = new THREE.PointLight( 0xff0000, 5.5, 100 );
+light.position.set( 50, 50, 50 );
+scene.add( light );
 
 // Render Loop
 var render = function () {
