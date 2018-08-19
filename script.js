@@ -21,6 +21,12 @@ renderer.setSize( window.innerWidth, window.innerHeight );
 // Append Renderer to DOM
 document.body.appendChild( renderer.domElement );
 
+// Stats module
+var stats = new Stats();
+stats.showPanel( 0 );
+document.body.appendChild( stats.dom );
+stats.begin();
+
 // ------------------------------------------------
 // FUN STARTS HERE
 // ------------------------------------------------
@@ -44,4 +50,13 @@ var render = function () {
   renderer.render(scene, camera);
 };
 
+window.onresize = function(){
+	console.log("Window size: "+window.innerWidth+"x"+window.innerHeight+"px");
+	renderer.setSize(window.innerWidth,window.innerHeight);
+	var aspectRatio = window.innerWidth/window.innerHeight;
+	camera.aspect = aspectRatio;
+	camera.updateProjectionMatrix();
+}
+
 render();
+stats.end();
